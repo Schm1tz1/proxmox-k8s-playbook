@@ -65,6 +65,7 @@ qm cloudinit dump 9000 user
 qm template 9000
 
 ```
+For Debian Buster you can use the same script, simply change the image: https://cloud.debian.org/images/cloud/bullseye/latest/debian-11-generic-amd64.qcow2
 
 ## Configure
 ### Add credentials
