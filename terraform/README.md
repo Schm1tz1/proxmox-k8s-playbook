@@ -39,4 +39,4 @@ proxmox_api_token_secret = "ffffffff-eeee-dddd-cccc-bbbbbbbbbbbb"
 Disks are resized in cloud init phase. For more details also see:
 * https://vectops.com/2020/05/provision-proxmox-vms-with-terraform-quick-and-easy/
 * https://registry.terraform.io/providers/Telmate/proxmox/latest/docs/resources/vm_qemu#provision-through-cloud-init
-* https://registry.terraform.io/providers/Telmate/proxmox/latest/docs/guides/cloud_init# 
+* https://registry.terraform.io/providers/Telmate/proxmox/latest/docs/guides/cloud_init
