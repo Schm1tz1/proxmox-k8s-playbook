@@ -1,0 +1,7 @@
+proxmox_vm_template = "ubuntu-base-template" # needs to match the NAME of the template. Lookup is done by name, not ID !
+network_bridge = "vmbr1"
+
+master-count = 1
+node-count = 3
+
+ssh_key = "<you pubkey from ~/.ssh/id_rsa.pub here !>"
