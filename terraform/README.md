@@ -12,7 +12,7 @@ Example for ubuntu jammy:
 wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
 
 # create a new VM
-qm create 9000 --memory 2048 --net0 virtio,bridge=vmbr1 --name CP-Template
+qm create 9000 --memory 2048 --net0 virtio,bridge=vmbr1 --name ubuntu-base-template
 qm importdisk 9000 /root/img/jammy-server-cloudimg-amd64.img local-zfs
 qm set 9000 --scsihw virtio-scsi-pci --scsi0 local-zfs:vm-9000-disk-0
 
