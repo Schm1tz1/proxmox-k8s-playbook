@@ -1,0 +1,6 @@
+# BEGIN k8s
+10.0.0.20 k8s-master-0
+10.0.0.21 k8s-node-0
+10.0.0.22 k8s-node-1
+10.0.0.23 k8s-node-2
+# END k8s

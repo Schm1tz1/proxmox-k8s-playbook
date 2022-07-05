@@ -4,6 +4,7 @@ nodes=$(kubectl get nodes -o name)
 
 for node in ${nodes[@]}
 do
-    echo "==== Shut down $node ===="
-    ssh $node sudo shutdown -h 1
+    thisnode=$(echo $node | cut -d "/" -f2)
+    echo "==== Shut down $thisnode ===="
+    ssh -l ubuntu $thisnode sudo shutdown -h 1
 done
