@@ -13,10 +13,11 @@ resource "proxmox_vm_qemu" "node" {
 
   cores        = 2
   sockets      = 1
-  memory       = 8192
+  # memory       = 8192
+  memory       = 6144
 
   disk {
-    size            = "16G"
+    size            = "20G"
     type            = "scsi"
     storage         = "local-zfs"
   }
