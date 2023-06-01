@@ -41,10 +41,13 @@ fatal: [10.0.0.20]: FAILED! => {"changed": false, "msg": "Unable to restart serv
 ## Get Started
 * copy kube-config: `scp -v ubuntu@10.0.0.20:~/.kube/config ~/.kube/config`
 
+### Use different Ingress Controllers
+* Disable *traefik* by adding `extra_server_args: "--no-deploy traefik"` in pve_cluster/group_vars/all.yml
+* Install e.g. *NGINX* via helm: `helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace` (also see https://kubernetes.github.io/ingress-nginx/)
 
 ### Accessing k3s outside of your local network (tunneling,NAT)
 
-## Option 1 (hacky): SSH-tunnel using a jumphost
+#### Option 1 (hacky): SSH-tunnel using a jumphost
 * SSL certificate on k3s master is perdefault generated for its IP and localhost. To simplify the connection over a jump-host, use ssh for port-forwarding and adapt the `.kube/config` to localhost
   * Example `.kube/config`:
     ```
@@ -83,7 +86,7 @@ fatal: [10.0.0.20]: FAILED! => {"changed": false, "msg": "Unable to restart serv
     kube-system   svclb-traefik-zzkp7                      2/2     Running     0          9h
     kube-system   traefik-74dd4975f9-7j8qj                 1/1     Running     0          9h
     ```
-  ## Option 2 (cleaner): Use NAT / reverse proxy and add external ip/hostname to tls-san
+#### Option 2 (cleaner): Use NAT / reverse proxy and add external ip/hostname to tls-san
   * Forward a port or run a reverse proxy to your kube master port. This might be as simple as forwarding port 6443 to the master node in your firewall or running haproxy/nginx reverse proxy.
   * You need to run the k3s server with the option `--tls-san <external hostname/ip>` to have the external address added to your DNS/SAN in the certificate. As certificates are created on a regular basis, it is safe to do this upon installation with ansible and/or re-deploy at least the master node. Simply adding the option to the systemd script and restarting will not work!
     * in the group vars (e.g. `k3s/pve_cluster/group_vars/all.yml`), set `extra_server_args: "--tls-san <external hostname/ip>"`
