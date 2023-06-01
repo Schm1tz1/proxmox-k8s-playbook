@@ -43,7 +43,13 @@ fatal: [10.0.0.20]: FAILED! => {"changed": false, "msg": "Unable to restart serv
 
 ### Use different Ingress Controllers
 * Disable *traefik* by adding `extra_server_args: "--no-deploy traefik"` in pve_cluster/group_vars/all.yml
-* Install e.g. *NGINX* via helm: `helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace` (also see https://kubernetes.github.io/ingress-nginx/)
+* Install e.g. *NGINX* via helm: 
+```
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
+```
+(also see https://kubernetes.github.io/ingress-nginx/)
 
 ### Accessing k3s outside of your local network (tunneling,NAT)
 
