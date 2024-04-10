@@ -6,6 +6,10 @@ resource "proxmox_vm_qemu" "master" {
   clone        = var.proxmox_vm_template
   target_node  = "atlas"
 
+  agent        = 0
+  bios         = "seabios"
+  scsihw       = "virtio-scsi-pci"
+
   os_type      = "cloud-init"
   ipconfig0    = "ip=10.0.0.2${count.index}/24,gw=${var.network_gateway}"
   nameserver   = "10.0.0.1"
