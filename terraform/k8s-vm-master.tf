@@ -16,12 +16,12 @@ resource "proxmox_vm_qemu" "master" {
   ssh_user     = "ubuntu"
   sshkeys      = var.ssh_key
 
-  cores        = 1
+  cores        = 2
   sockets      = 1
   memory       = 3072
 
   disk {
-    size            = "8G"
+    size            = "16G"
     type            = "scsi"
     storage         = "local-zfs"
   }

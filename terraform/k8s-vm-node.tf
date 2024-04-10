@@ -21,7 +21,7 @@ resource "proxmox_vm_qemu" "node" {
   memory       = 6144
 
   disk {
-    size            = "20G"
+    size            = "32G"
     type            = "scsi"
     storage         = "local-zfs"
   }
