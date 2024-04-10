@@ -33,7 +33,7 @@ k3s_cluster:
 EOF
 
 mkdir airgap
-wget https://github.com/k3s-io/k3s/releases/download/v1.29.3%2Bk3s1/k3s-airgap-images-amd64.tar.gz -P ./airgap/
-wget https://github.com/k3s-io/k3s/releases/download/v1.29.3%2Bk3s1/k3s -P ./airgap/
+wget -nc https://github.com/k3s-io/k3s/releases/download/v1.29.3%2Bk3s1/k3s-airgap-images-amd64.tar.gz -P ./airgap/
+wget -nc https://github.com/k3s-io/k3s/releases/download/v1.29.3%2Bk3s1/k3s -P ./airgap/
 
 ansible-playbook playbook/site.yml -i inventory.yaml
