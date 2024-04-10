@@ -10,15 +10,17 @@ pull_images() {
 
 create_template() {
     VMID=$1
-    IMAGE=$2
+    NAME=$2
+    IMAGE=$3
+    STORAGE=$4
 
     echo "  * Creating template VM ${VMIU} from image ${IMAGE}..."
 
-    qm create ${VMID} --memory 2048 --net0 virtio,bridge=vmbr1 --name ubuntu24-base-template
-    qm importdisk ${VMID} ${IMAGE}
+    qm create ${VMID} --memory 2048 --net0 virtio,bridge=vmbr1 --name ${NAME}
+    qm importdisk ${VMID} ${IMAGE} ${STORAGE}
 
-    qm set ${VMID} --scsihw virtio-scsi-pci --scsi0 local-zfs:vm-${VMID}-disk-0
-    qm set ${VMID} --ide2 local-zfs:cloudinit
+    qm set ${VMID} --scsihw virtio-scsi-pci --scsi0 ${STORAGE}:vm-${VMID}-disk-0
+    qm set ${VMID} --ide2 ${STORAGE}:cloudinit
     qm set ${VMID} --boot c --bootdisk scsi0
     qm set ${VMID} --serial0 socket --vga serial0
 
@@ -30,9 +32,9 @@ echo "Downloading VM CloudInit images..."
 pull_images
 
 echo "Creating template VMs..."
-create_template 9020 ${TMPDIR}/focal-server-cloudimg-amd64.img
-create_template 9022 ${TMPDIR}/jammy-server-cloudimg-amd64.img
-create_template 9024 ${TMPDIR}/noble-server-cloudimg-amd64.img
+create_template 9020 ubuntu20-base-template ${TMPDIR}/focal-server-cloudimg-amd64.img local-zfs
+create_template 9022 ubuntu22-base-template ${TMPDIR}/jammy-server-cloudimg-amd64.img local-zfs
+create_template 9024 ubuntu24-base-template ${TMPDIR}/noble-server-cloudimg-amd64.img local-zfs
 
 echo "Cleaning up..."
 rm -vir ${TMPDIR}
