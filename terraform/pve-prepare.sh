@@ -31,3 +31,6 @@ echo "Creating template VMs..."
 create_template 9020 ${TMPDIR}/focal-server-cloudimg-amd64.img
 create_template 9022 ${TMPDIR}/jammy-server-cloudimg-amd64.img
 create_template 9024 ${TMPDIR}/noble-server-cloudimg-amd64.img
+
+echo "Cleaning up..."
+rm -vfr ${TMPDIR}
