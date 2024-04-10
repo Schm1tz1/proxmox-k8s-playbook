@@ -2,6 +2,7 @@
 
 ## Prepare: Template from Cloud-Init-Image
 (see https://pve.proxmox.com/wiki/Cloud-Init_Support)
+* Run this on your PVE hypervisor !
 * use the scripts in preparation directory before starting terraform!
 * Have a look at the numbering scheme: The startup order will be lowest to highest (and shutdown order vice versa). In the current scheme we are limited to 9 nodes of each type which should be more than enough. If you need more, change the VM-IDs accordingly! 
 * Most important point: cloud init in PVE work with a virtual cdrom drive. **DO NOT** forget to create one!
