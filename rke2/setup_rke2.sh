@@ -26,7 +26,7 @@ cat <<EOF > deploy_rke2.yaml
   vars:
     ansible_user: ubuntu
     rke2_ha_mode: false
-    rke2_api_ip: 10.0.0.20
+    rke2_api_ip: 10.0.0.20  
     rke2_download_kubeconf: true
     rke2_download_kubeconf_file_name: kubeconf.yaml
     rke2_download_kubeconf_path: ./

@@ -6,7 +6,7 @@ Switch into the Terraform directory and follow the README there.
 ## Install rke2 using ansible
 * One-command deployment (or uninstall) using th eprovided scripts:
   * `setup_rke2.sh` - Default RKE2 installation based on Ubuntu 22 (based on this blog post: https://www.pivert.org/rke2-cluster-on-ubuntu-22-04-in-minutes-ansible-galaxy-and-manual-options/)
-  * `setup_rke2_cilium.sh` - RKE2 installation with Cilium (WIP)
+  * `setup_rke2_cilium.sh` - RKE2 installation with Cilium 
 
 ## Get Started
 * copy kube-config: `scp -v ubuntu@10.0.0.20:~/.kube/config ~/.kube/config`
