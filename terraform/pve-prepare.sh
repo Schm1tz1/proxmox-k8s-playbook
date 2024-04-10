@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+TMPDIR=/tmp/k8s-tmp
+
 pull_images() {
     wget https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img -P ${TMPDIR}
     wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img -P ${TMPDIR}
