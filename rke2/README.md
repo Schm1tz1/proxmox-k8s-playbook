@@ -1,21 +1,18 @@
-# k3s
+# rke2
 
 ## PVE VM Setup with Terraform
 Switch into the Terraform directory and follow the README there.
 
-## Install k3s using ansible
+## Install rke2 using ansible
 * One-command deployment (or uninstall) using th eprovided scripts:
-  * `setup_k3s.sh` - Base k3s installation with wireguard backend. Modify the in-line configuration for the nodes where required.
-  * `setup_k3s_no_traefik.sh` - Same installation only without Traefik installed. Tthis enables you to use different ingress controllers / loadbalancers easily.
-  * `uninstall_k3s.sh` - Reset nodes / uninstall k3s.
-* You can reset/uninstall your nodes with `ansible-playbook reset.yml -i inventory.yaml`
-(For more details also see https://www.suse.com/c/rancher_blog/deploying-k3s-with-ansible/)
+  * `setup_rke2.sh` - Default RKE2 installation based on Ubuntu 22 (based on this blog post: https://www.pivert.org/rke2-cluster-on-ubuntu-22-04-in-minutes-ansible-galaxy-and-manual-options/)
+  * `setup_rke2_cilium.sh` - RKE2 installation with Cilium (WIP)
 
 ## Get Started
 * copy kube-config: `scp -v ubuntu@10.0.0.20:~/.kube/config ~/.kube/config`
 
 ### Use different Ingress Controllers
-* Install k3s via `setup_k3s_no_traefik.sh`
+* Disable *traefik* by adding `extra_server_args: "--no-deploy traefik"` in pve_cluster/group_vars/all.yml
 * Install e.g. *NGINX* via helm: 
 ```
 helm upgrade --install ingress-nginx ingress-nginx \
@@ -24,7 +21,7 @@ helm upgrade --install ingress-nginx ingress-nginx \
 ```
 (also see https://kubernetes.github.io/ingress-nginx/)
 
-### Accessing k3s outside of your local network (tunneling,NAT)
+### Accessing rke2 outside of your local network (tunneling,NAT)
 Access to you internal k8s network is done using NAT / reverse proxy and adding external ip/hostname to tls-san.
 Steps:
   * Forward a port or run a reverse proxy to your kube master port. This might be as simple as forwarding port 6443 to the master node in your firewall or running haproxy/nginx reverse proxy.

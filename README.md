@@ -7,6 +7,8 @@
 
 ## Installation of different distributions
 * k3s - go to [k3s](./k3s/)
+* RKE2 - go to [rke2](./rke2/)
+* OpenShift (TODO)
 
 ## General Kubernetes
 
