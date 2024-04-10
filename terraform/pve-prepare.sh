@@ -3,9 +3,9 @@
 TMPDIR=/tmp/k8s-tmp
 
 pull_images() {
-    wget https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img -P ${TMPDIR}
-    wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img -P ${TMPDIR}
-    wget https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img -P ${TMPDIR}
+    wget -nc https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img -P ${TMPDIR}
+    wget -nc https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img -P ${TMPDIR}
+    wget -nc https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img -P ${TMPDIR}
 }
 
 create_template() {
@@ -35,4 +35,4 @@ create_template 9022 ${TMPDIR}/jammy-server-cloudimg-amd64.img
 create_template 9024 ${TMPDIR}/noble-server-cloudimg-amd64.img
 
 echo "Cleaning up..."
-rm -vfr ${TMPDIR}
+rm -vir ${TMPDIR}
