@@ -14,7 +14,10 @@ create_template() {
     IMAGE=$3
     STORAGE=$4
 
-    echo "  * Creating template VM ${VMIU} from image ${IMAGE}..."
+    echo " * Removing old VM ${VMID}..."
+    qm destroy ${VMID} --purge
+
+    echo "  * Creating template VM ${VMID} from image ${IMAGE}..."
 
     qm create ${VMID} --memory 2048 --net0 virtio,bridge=vmbr1 --name ${NAME}
     qm importdisk ${VMID} ${IMAGE} ${STORAGE}
