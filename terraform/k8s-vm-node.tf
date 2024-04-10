@@ -14,7 +14,6 @@ resource "proxmox_vm_qemu" "node" {
 
   cores        = 2
   sockets      = 1
-  # memory       = 8192
   memory       = 6144
 
   disk {
