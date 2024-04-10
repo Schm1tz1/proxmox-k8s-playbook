@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
+STORAGE=local-zfs
 TMPDIR=/tmp/k8s-tmp
+VMID_PREFIX=90
 
 pull_images() {
     wget -nc https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img -P ${TMPDIR}
@@ -35,9 +37,9 @@ echo "Downloading VM CloudInit images..."
 pull_images
 
 echo "Creating template VMs..."
-create_template 9020 ubuntu20-base-template ${TMPDIR}/focal-server-cloudimg-amd64.img local-zfs
-create_template 9022 ubuntu22-base-template ${TMPDIR}/jammy-server-cloudimg-amd64.img local-zfs
-create_template 9024 ubuntu24-base-template ${TMPDIR}/noble-server-cloudimg-amd64.img local-zfs
+create_template ${VMID_PREFIX}20 ubuntu20-base-template ${TMPDIR}/focal-server-cloudimg-amd64.img ${STORAGE}
+create_template ${VMID_PREFIX}22 ubuntu22-base-template ${TMPDIR}/jammy-server-cloudimg-amd64.img ${STORAGE}
+create_template ${VMID_PREFIX}24 ubuntu24-base-template ${TMPDIR}/noble-server-cloudimg-amd64.img ${STORAGE}
 
 echo "Cleaning up..."
 rm -vir ${TMPDIR}
