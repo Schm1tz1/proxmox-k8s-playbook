@@ -15,15 +15,9 @@ cp -v kubeconf.taml ~/.kube/config
 kubectl get nodes
 ```
 
-### Use different Ingress Controllers
-* Disable *traefik* by adding `extra_server_args: "--no-deploy traefik"` in pve_cluster/group_vars/all.yml
-* Install e.g. *NGINX* via helm: 
-```
-helm upgrade --install ingress-nginx ingress-nginx \
-  --repo https://kubernetes.github.io/ingress-nginx \
-  --namespace ingress-nginx --create-namespace
-```
-(also see https://kubernetes.github.io/ingress-nginx/)
+### Deploy further tools
+This folder contains scripts to deploy longhorn, certman and ranger. The Ranger-Script is configured to use a pre-generated certificate in a secret so you need to deploy and configure Certman first !
+The RKE2 installatikon comes without a defult storage class so feel free to simply deploy longhorn so you don't run into issues with persistent volume claims!
 
 ### Accessing rke2 outside of your local network (tunneling,NAT)
 Access to you internal k8s network is done using NAT / reverse proxy and adding external ip/hostname to tls-san (see configuration).
