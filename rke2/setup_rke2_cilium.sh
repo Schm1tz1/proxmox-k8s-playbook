@@ -25,7 +25,6 @@ cat <<EOF > deploy_rke2.yaml
   become: yes
   vars:
     ansible_user: ubuntu
-    rke2_version: v1.29.3+rke2r1
     rke2_server_options:
       - "cni: cilium"
     rke2_ha_mode: false
