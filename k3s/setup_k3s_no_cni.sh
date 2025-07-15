@@ -25,7 +25,7 @@ k3s_cluster:
     ansible_user: debian
     k3s_version: v1.33.2+k3s1
     api_endpoint: "{{ hostvars[groups['server'][0]]['ansible_host'] | default(groups['server'][0]) }}"
-    extra_server_args: "--prefer-bundled-bin --tls-san 192.168.178.3 --disable=traefik --flannel-backend=wireguard-native"
+    extra_server_args: "--prefer-bundled-bin --tls-san 192.168.178.3 --disable=traefik --flannel-backend=none --disable-network-policy --cluster-cidr=10.42.0.0/16"
     extra_agent_args: ""
     systemd_dir: /etc/systemd/system
     airgap_dir: /root/workspace/proxmox-k8s-playbook/k3s/k3s-ansible/airgap
