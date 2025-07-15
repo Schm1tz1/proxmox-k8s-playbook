@@ -2,7 +2,11 @@ terraform {
   required_providers {
     proxmox = {
       source = "telmate/proxmox"
+      version = "3.0.2-rc01"
     }
+  }
+  backend "pg" {
+    conn_str = "postgres://192.168.178.12/terraform"
   }
 }
 
@@ -20,6 +24,19 @@ variable "proxmox_api_token_secret" {
 
 variable "proxmox_vm_template" {
   type = string
+}
+
+variable "master_prefix"{
+  type = string
+}
+
+variable "node_prefix"{
+  type = string
+}
+
+variable "ssh_user" {
+  type = string
+  default = "debian"
 }
 
 variable "network_bridge" {

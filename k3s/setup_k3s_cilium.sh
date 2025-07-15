@@ -19,12 +19,15 @@ kubectl get svc -A
 
 cilium install \
   --set kubeProxyReplacement=true \
+  --set ingressController.enabled=true \
+  --set ingressController.default=true \
+  --set ingressController.loadbalancerMode=shared \
   --set k8sServiceHost=10.0.0.20 \
   --set k8sServicePort=6443 \
   --set ipam.operator.clusterPoolIPv4PodCIDRList="10.42.0.0/16" \
   --set ipv4NativeRoutingCIDR=10.42.0.0/16 \
-  --set ipv4.enabled=true \
-  --helm-set operator.replicas=1 
+  --set ipv4.enabled=true 
+#  --helm-set operator.replicas=1 
 
 cilium status --wait
 

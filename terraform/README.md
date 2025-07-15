@@ -12,5 +12,7 @@ Disks are resized in cloud init phase. For more details also see:
 * https://registry.terraform.io/providers/Telmate/proxmox/latest/docs/guides/cloud_init
 
 ## Configure and Deploy
+* TF state is stores in PostgreSQL. Modify and source `postgres.env` where required !
+* Apply correct vars file using `terraform plan/apply -var-file="k3s-debian12.tfvars"`
 * Make sure to create yor PVE user with the correct roles and an API token as documented: https://github.com/Telmate/terraform-provider-proxmox/blob/master/docs/index.md
 * In case of release-updates double-check the permissions for the `TerraformProv` role in PVE with the documentation.
