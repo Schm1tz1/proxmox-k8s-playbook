@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "pg" {
-    conn_str = "postgres://192.168.178.12/terraform"
+    conn_str = "postgres://192.168.40.112/terraform"
   }
 }
 
@@ -34,7 +34,22 @@ variable "node_prefix"{
   type = string
 }
 
+variable "master_ip_prefix"{
+  type = string
+  default = "1"
+}
+
+variable "node_ip_prefix"{
+  type = string
+  default = "2"
+}
+
 variable "ssh_user" {
+  type = string
+  default = "debian"
+}
+
+variable "ssh_password" {
   type = string
   default = "debian"
 }
@@ -43,9 +58,22 @@ variable "network_bridge" {
   type = string
 }
 
+variable "node_subnet" {
+  type = string
+}
+
+variable "vlan_tag" {
+  type = string
+}
+
 variable "network_gateway" {
   type = string
-  default = "10.0.0.1"
+  default = "192.168.80.1"
+}
+
+variable "dns_server" {
+  type = string
+  default = "192.168.80.1"
 }
 
 variable "master-count" {

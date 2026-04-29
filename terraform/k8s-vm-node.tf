@@ -12,9 +12,10 @@ resource "proxmox_vm_qemu" "k8s-node" {
   
   os_type      = "cloud-init"
   ciupgrade    = true
-  ipconfig0    = "ip=10.0.0.2${var.master-count+count.index}/24,gw=${var.network_gateway}"
-  nameserver   = "10.0.0.1"
+  ipconfig0    = "ip=${var.node_subnet}.${var.node_ip_prefix}${count.index}/24,gw=${var.network_gateway}"
+  nameserver   = var.dns_server
   ssh_user     = var.ssh_user
+  cipassword   = var.ssh_password
   sshkeys      = var.ssh_key
 
   memory       = 6144
@@ -26,8 +27,9 @@ resource "proxmox_vm_qemu" "k8s-node" {
 
   network {
     id        = 0
-    bridge    = "vmbr1"
+    bridge    = var.network_bridge
     model     = "virtio"
+    tag       = var.vlan_tag
   }
 
   disks {
@@ -51,6 +53,11 @@ resource "proxmox_vm_qemu" "k8s-node" {
         }
       }
     }
+  }
+
+  serial {
+    id   = 0
+    type = "socket"
   }
 
 }
